@@ -1,0 +1,720 @@
+appearance()
+	-webkit-appearance arguments
+	appearance arguments
+text-security()
+	-webkit-text-security arguments
+	text-security arguments
+user-drag()
+	-webkit-user-drag arguments
+	user-drag arguments
+$$full =
+	position absolute
+	left 0
+	top 0
+	width 100%
+	height 100%
+$$text-nowrap =
+	white-space nowrap
+	word-break break-word
+$$text-truncate =
+	overflow hidden
+	text-overflow ellipsis
+	white-space nowrap
+	word-break break-word
+$$scroll-y =
+	overflow-x hidden
+	overflow-y auto
+$$events =
+	pointer-events none
+	> *
+		pointer-events auto
+$$fonts = {
+	sans: unquote('"Tahoma",sans-serif')
+	mono: unquote('"Envy Code R",monospace')
+}
+$$colors = {
+	gray: {
+		button: #ccd #eef #000
+		buttonHover: #aab #eef #000
+		buttonActive: #aab #ccd #000
+		buttonMinimal: #0000 #0000 #000
+		buttonMinimalHover: #0000 #dde #000
+		buttonMinimalActive: #0000 #ccd #000
+	}
+	red: {
+		button: #912 #c12 #fff
+		buttonHover: #601 #c12 #fff
+		buttonActive: #601 #912 #fff
+		buttonMinimal: #0000 #0000 #c12
+		buttonMinimalHover: #0000 #fcd #c12
+		buttonMinimalActive: #0000 #fab #c12
+	}
+	yellow: {
+		button: #a62 #d82 #fff
+		buttonHover: #651 #d82 #fff
+		buttonActive: #651 #a62 #fff
+		buttonMinimal: #0000 #0000 #d82
+		buttonMinimalHover: #0000 #fea #d82
+		buttonMinimalActive: #0000 #fd9 #d82
+	}
+	green: {
+		button: #164 #195 #fff
+		buttonHover: #034 #195 #fff
+		buttonActive: #034 #164 #fff
+		buttonMinimal: #0000 #0000 #195
+		buttonMinimalHover: #0000 #aec #195
+		buttonMinimalActive: #0000 #8ea #195
+	}
+	blue: {
+		button: #168 #17b #fff
+		buttonHover: #055 #17b #fff
+		buttonActive: #055 #168 #fff
+		buttonMinimal: #0000 #0000 #17b
+		buttonMinimalHover: #0000 #cdf #17b
+		buttonMinimalActive: #0000 #ace #17b
+	}
+}
+
+@import "//fonts.googleapis.com/css?family=Tahoma:400,700"
+@font-face
+	font-family "Envy Code R"
+	src url("//cdn.jsdelivr.net/gh/tiencoffee/fonts/EnvyCodeR.ttf")
+
+body
+	margin 0
+	font-family: $$fonts.sans
+	font-size 13px
+	line-height 1.3
+	overflow hidden
+	word-break break-word
+	background #fff
+	color #000
+	tab-size 2
+	user-select none
+*, *:before, *:after
+	box-sizing border-box
+*
+	vertical-align middle
+::-webkit-scrollbar
+	appearance none
+	width 12px
+	height 12px
+	border-radius 0 3px 3px 0
+	background #fff
+::-webkit-scrollbar-thumb
+	border solid 2px #fff
+	border-radius 5px
+	background #bbc
+	&:hover
+		background #aab
+	&:active
+		background #889
+a, img
+	user-drag none
+textarea
+	resize vertical
+p, pre
+h1, h2, h3, h4, h5, h6
+	margin 8px 0
+h1, h2, h3, h4, h5, h6
+	font-family: $$fonts.sans
+b, i, u, s, strong, em, del, strike,
+a, samp, var, tt, small, big,
+span, abbr, acronym, cite, dfn, q, sub, sup, bdo
+output, time
+	vertical-align baseline
+pre
+	font-family: $$fonts.mono
+	white-space pre-wrap
+for size, i in 2.6 1.8 1.2 1 .85 .8
+	h{i + 1}
+		font-size (size)em
+[data-popper-placement^=left]
+	-webkit-transform-origin-x 100%
+[data-popper-placement^=right]
+	-webkit-transform-origin-x 0
+[data-popper-placement^=top]
+	-webkit-transform-origin-y 100%
+[data-popper-placement^=bottom]
+	-webkit-transform-origin-y 0
+body
+#appEl
+	position absolute
+	left 0
+	top 0
+	width 100%
+	height 100%
+
+.disabled
+[disabled]
+	opacity .5
+	pointer-events none
+.Icon
+	pointer-events none
+.Icon-img
+	object-fit contain
+.Button
+	position relative
+	max-width 100%
+	height 24px
+	padding 0 8px
+	border solid 1px
+	border-radius 3px
+	display inline-flex
+	justify-content center
+	align-items center
+	font inherit
+	outline 0
+.Button-onlyIcon
+	width 32px
+	padding 0 5px
+.Button-text
+	margin 0 8px
+	flex-grow 1
+	pointer-events none
+for color, c in $$colors
+	.Button-{color}
+		border-color: c.button[0]
+		background: c.button[1]
+		color: c.button[2]
+		&:hover
+			border-color: c.buttonHover[0]
+		&:active
+		&.active
+			border-color: c.buttonActive[0]
+			background: c.buttonActive[1]
+		&.Button-minimal
+			border-color: c.buttonMinimal[0]
+			background: c.buttonMinimal[1]
+			color: c.buttonMinimal[2]
+			&:hover
+				border-color: c.buttonMinimalHover[0]
+				background: c.buttonMinimalHover[1]
+				color: c.buttonMinimalHover[2]
+			&:active
+			&.active
+				border-color: c.buttonMinimalActive[0]
+				background: c.buttonMinimalActive[1]
+				color: c.buttonMinimalActive[2]
+.TextInput
+	position relative
+	height 24px
+	border solid 1px #ccd
+	border-radius 3px
+	display inline-flex
+	align-items stretch
+	background #fff
+	transition-property border-color,border-radius,box-shadow
+	transition-duration .1s
+.TextInput-isFocus
+	border-color #0000
+	border-radius 3px !important
+	box-shadow 0 0 0 2px #17b
+	z-index 5
+.TextInput-fill
+	width 100% !important
+.TextInput-input
+	width 0
+	padding 0 8px
+	border 0
+	border-radius 3px
+	flex-grow 1
+	font inherit
+	outline 0
+.TextInput-element
+	padding 0 2px
+	display inline-flex
+	align-items center
+	> .Button
+		max-height 18px
+		&:hover
+			> .Button-icon
+				transform scale(.9)
+.TextInput-leftElement
+	> .Icon
+		margin-left 6px
+.TextInput-rightElement
+	> .Icon
+		margin-right 6px
+.PasswordInput-isHidePassword
+	> .TextInput-input
+		text-security square
+.NumberInput-input
+	> .TextInput-input
+		&::-webkit-inner-spin-button
+			appearance none
+.NumberInput-buttons
+	display inline-flex
+	flex-direction column
+.NumberInput-button
+	&:hover
+	&:active
+		z-index 1
+.NumberInput-buttonUp
+	height 13px
+	border-radius 0 3px 0 0
+.NumberInput-buttonDown
+	height 12px
+	margin-top -1px
+	border-radius 0 0 3px 0
+.Checkbox
+.Radio
+.Switch
+	height 24px
+	display inline-flex
+	align-items center
+.Checkbox-input
+.Radio-input
+	width 18px
+	height 18px
+.Checkbox-text
+.Radio-text
+.Switch-text
+	margin-left 8px
+.Radio-input
+	border-radius 50%
+	> .Button-icon
+		transform scale(.5)
+.Switch-off
+	.Switch-thumb
+		left 0
+		background #ccd
+	.Switch-label
+		left calc(100% - 2px)
+		transform translateX(-100%)
+.Switch-on
+	.Switch-thumb
+		left calc(100% - 4px)
+		transform translateX(-100%)
+		background #17b
+	.Switch-label
+		left 2px
+.Switch-input
+	position relative
+	height 20px
+	padding 2px
+	border solid 1px #ccd
+	display inline-flex
+	align-items center
+.Switch-thumb
+	position absolute
+	width 14px
+	height 14px
+	margin 2px
+	transition .15s
+.Switch-label
+	position absolute
+	font-size .8em
+	transition .15s
+	{$$text-truncate}
+.Menu
+	max-width 400px
+	padding 4px 0
+	border solid 1px #ccd
+	display inline-block
+.Menu-minimal
+	border 0
+.Menu-item
+.Select-item
+	min-height 24px
+	padding 0 16px
+	display flex
+	align-items center
+for color, c in $$colors
+	.Menu-item-{color}
+		color: c.buttonMinimal[2]
+		&:hover
+		&.Menu-itemShowSubmenu
+			background: c.buttonMinimalHover[1]
+		&.Menu-itemNoSubmenu
+			&:active
+				background: c.buttonMinimalActive[1]
+.Menu-itemIcon
+	width 16px
+	display inline-flex
+	justify-content center
+.Menu-itemText
+	margin 0 8px
+	flex-grow 1
+.Menu-itemLabel
+	margin-left 8px
+	font-size .85em
+	color #3348
+	transition transform .15s
+.Menu-itemShowSubmenu
+	> .Menu-itemLabel
+		transform rotate(45deg)
+.Menu-divider
+.Select-divider
+	margin 4px 0
+	border-top solid 1px #ccd
+.Menu-popper
+	background #fff
+	box-shadow 0 0 4px 2px #ccd8
+	z-index 100
+	outline 0
+.Menu-submenu
+	border solid 1px #bbc
+.Select
+	> .Button-text
+		margin-right 16px
+		{$$text-truncate}
+.Select-portal
+	display inline-block
+	z-index 10
+.Select-menu
+	padding 4px 0
+	border solid 1px #bbc
+	border-radius 3px
+	background #fff
+	box-shadow 0 0 4px 2px #ccd8
+	overflow auto
+.Select-itemHover
+	background #dde
+.Select-item
+	&:active
+		background #ccd
+.Slider
+	display inline-block
+	{$$text-nowrap}
+.Slider-fill
+	width 100% !important
+.Slider-horizontal
+	height 36px
+	padding 0 9px
+	&.Slider-isHasPointerCapture
+		.Slider-thumb
+			transform translateX(-50%) scale(1.1)
+	.Slider-input
+		width 100%
+		height 100%
+		display flex
+		align-items center
+	.Slider-track
+		width 100%
+		height 8px
+	.Slider-labels
+		top 50%
+		width 100%
+		transform translateY(10px)
+	.Slider-label
+		transform translateX(-50%)
+	.Slider-thumb
+		transform translateX(-50%)
+.Slider-vertical
+	width 36px
+	padding 9px 0
+	&.Slider-isHasPointerCapture
+		.Slider-thumb
+			transform translateY(50%) scale(1.1)
+	.Slider-input
+		width 100%
+		height 100%
+		display flex
+		justify-content center
+	.Slider-track
+		width 8px
+		height 100%
+	.Slider-labels
+		left 50%
+		height 100%
+		transform translateX(12px)
+	.Slider-label
+		transform translateY(50%)
+	.Slider-thumb
+		transform translateY(50%)
+.Slider-input
+	position relative
+.Slider-track
+	background #dde
+.Slider-labels
+	position absolute
+	font-size .8em
+	pointer-events none
+	z-index 4
+.Slider-label
+	position absolute
+.Slider-thumb
+	position absolute
+	width 18px
+	height 18px
+	transition transform .05s
+.Slider-tooltip
+	min-width 20px
+	padding 2px 4px
+	border-radius 3px
+	text-align center
+	background #334
+	color #fff
+	box-shadow 0 0 4px 2px #ccd8
+	pointer-events none
+	z-index 10
+.Table
+	display inline-block
+	overflow auto
+	tr
+		height 26px
+	td, th
+		padding 4px 8px
+.Table-hasHeader
+	tr:first-child
+		text-align left
+		th
+			position sticky
+			top 0
+			background #fff
+			box-shadow 0 1px #ccd
+.Table-bordered
+	td, th
+		&:not(:last-child)
+			border-right solid 1px #ccd
+	tr
+		&:not(:last-child)
+			border-bottom solid 1px #ccd
+.Table-striped
+	tr
+		&:nth-child(even)
+			background #eef
+.Table-interactive
+	&.Table-hasHeader tr:not(:first-child)
+	&:not(.Table-hasHeader) tr
+		&:hover
+			background #dde
+		&:active
+			background #ccd
+.Table-fill
+	width 100% !important
+	display block
+.Table-content
+	width 100%
+	border-collapse collapse
+.ControlGroup
+	min-width 0
+	margin 0
+	padding 0
+	border 0
+	border-radius 3px
+	display inline-flex
+	> *
+		border-radius 0
+	> :first-child
+		border-top-left-radius 3px
+		border-bottom-left-radius 3px
+	> :last-child
+		border-top-right-radius 3px
+		border-bottom-right-radius 3px
+	> :only-child
+		border-radius 3px
+	> :not(:first-child)
+		margin-left -1px
+	> .Button
+		z-index 3
+	> .Button-gray
+		z-index 1
+		&:hover
+			z-index 2
+.ControlGroup-fill
+	display flex
+.ControlGroup-alignItems-left
+	justify-content flex-start
+.ControlGroup-alignItems-center
+	justify-content center
+.ControlGroup-alignItems-right
+	justify-content flex-end
+.Portal
+	border-radius 3px
+.Tooltip
+	padding 4px 8px
+	background #334
+	color #fff
+	pointer-events none
+	z-index 100
+.Popover
+	border solid 1px #bbc
+	background #fff
+	box-shadow 0 0 4px 2px #ccd8
+	z-index 100
+.Popover-content
+	transform-origin inherit
+	animation Popper-open .15s
+@keyframes Popper-open
+	from
+		transform scale(0)
+		opacity 0
+	to
+		transform scale(1)
+		opacity 1
+.ContextMenu
+	background #fff
+	box-shadow 0 0 4px 2px #ccd8
+	z-index 200
+	outline 0
+.ContextMenu-menu
+	border solid 1px #bbc
+.Dialog
+	padding 4px
+	border solid 1px #bbc
+	display inline-flex
+	flex-direction column
+.Dialog-header
+	height 24px
+	display flex
+	align-items center
+.Dialog-title
+	margin 0 8px
+	flex-grow 1
+	{$$text-truncate}
+.Dialog-body
+	flex-grow 1
+
+{{styl}}
+
+.row
+	display flex
+	flex-direction row
+.column
+	display flex
+	flex-direction column
+.col
+	flex-grow 1
+.col-0
+	flex-shrink 0
+for i in range(1, 12)
+	val = floor(i / 12 * 100%, 2)
+	.row > .col-{i}
+		width val
+	.column > .col-{i}
+		height val
+	val = floor(100% / i, 2)
+	.row-{i}
+		display grid
+		grid-template-columns repeat(i,1fr)
+		> .col-{i}
+			grid-column span (i)
+.full
+	{$$full}
+.wrap
+	flex-wrap wrap
+.nowrap
+	flex-wrap nowrap
+for dir in row column
+	.{dir}
+		prop = dir is row ? "justify-content" : "align-items"
+		&.start
+			{prop} flex-start
+		&.center
+			{prop} center
+		&.end
+			{prop} flex-end
+		prop = dir is row ? "align-items" : "justify-content"
+		&.top
+			{prop} flex-start
+		&.middle
+			{prop} center
+		&.bottom
+			{prop} flex-end
+.between
+	justify-content space-between
+.around
+	justify-content space-around
+.evenly
+	justify-content space-evenly
+.stretch
+	align-items stretch
+props = {p: padding, m: margin}
+sides = {t: top, r: right, b: bottom, l: left}
+sizes = 32px 16px 8px 4px 2px 0
+for p, prop in props
+	for size, i in sizes
+		i = 5 - i
+		.{p}-{i}
+			{prop} size
+		.-{p}-{i}
+			{prop} -(size)
+		.{p}x-{i}
+			{prop}-left size
+			{prop}-right size
+		.{p}y-{i}
+			{prop}-top size
+			{prop}-bottom size
+		.-{p}x-{i}
+			{prop}-left -(size)
+			{prop}-right -(size)
+		.-{p}y-{i}
+			{prop}-top -(size)
+			{prop}-bottom -(size)
+		for s, side in sides
+			.{p}{s}-{i}
+				{prop}-{side} size
+			if p is m and i
+				.-{p}{s}-{i}
+					{prop}-{side} -(size)
+for pos in absolute relative fixed
+	.{pos}
+		position pos
+for size in 100 75 50 25 0
+	.w-{size}
+		width (size)%
+	.h-{size}
+		height (size)%
+.w-fit
+	width fit-content
+.w-min
+	width min-content
+.w-max
+	width max-content
+.h-fit
+	height fit-content
+.h-min
+	height min-content
+.h-max
+	height max-content
+for i in 0..5
+	.z-{i}
+		z-index i
+	if i
+		.-z-{i}
+			z-index -(i)
+for dis in block inline-block inline flex inline-flex
+	.{dis}
+		display dis
+.hidden, [hidden]
+	display none
+for align in left center right justify
+	.text-{align}
+		text-align align
+.text-baseline
+	vertical-align baseline
+.text-bold
+	font-weight bold
+.text-italic
+	font-style italic
+.text-nowrap
+	{$$text-nowrap}
+.text-pre
+	white-space pre
+.text-prewrap
+	white-space pre-wrap
+	word-break break-word
+.text-truncate
+	{$$text-truncate}
+.text-select
+	user-select auto
+.text-noselect
+	user-select none
+.text-security
+	text-security square
+.text-small, small
+	font-size .85em
+.scroll
+	overflow auto
+.scroll-y
+	{$$scroll-y}
+.noscroll
+	overflow hidden
+.event
+	pointer-events auto
+.noevent
+	pointer-events none
+.events
+	{$$events}

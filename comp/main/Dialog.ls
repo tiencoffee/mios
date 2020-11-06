@@ -1,0 +1,22 @@
+Dialog = m.comp do
+	view: ->
+		m \.Dialog,
+			m \.Dialog-header,
+				m \.Dialog-icon,
+					m Button,
+						minimal: yes
+						icon: \ghost
+				m \.Dialog-title,
+					"Tiêu đề"
+				m \.Dialog-buttons,
+					m Button,
+						minimal: yes
+						icon: \far:minus
+					m Button,
+						minimal: yes
+						icon: \far:plus
+					m Button,
+						minimal: yes
+						color: \red
+						icon: \far:times
+			m \.Dialog-body

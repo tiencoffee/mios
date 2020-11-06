@@ -1,0 +1,24 @@
+{
+	"comp/both": [
+		"comp/both/Button.ls",
+		"comp/both/Checkbox.ls",
+		"comp/both/ContextMenu.ls",
+		"comp/both/ControlGroup.ls",
+		"comp/both/Icon.ls",
+		"comp/both/Img.ls",
+		"comp/both/Menu.ls",
+		"comp/both/NumberInput.ls",
+		"comp/both/PasswordInput.ls",
+		"comp/both/Popover.ls",
+		"comp/both/Radio.ls",
+		"comp/both/Select.ls",
+		"comp/both/Slider.ls",
+		"comp/both/Switch.ls",
+		"comp/both/Table.ls",
+		"comp/both/TextInput.ls",
+		"comp/both/Tooltip.ls"
+	],
+	"comp/main": [
+		"comp/main/Dialog.ls"
+	]
+}
